@@ -6,7 +6,7 @@
 
 //Lengths of the leg parts
 #define LEN1 1
-#define LEN2 1 //Negative because it is effectively a negative distance in the way the frames are set up
+#define LEN2 1
 
 #define X_INIT -0.31
 #define Y_INIT -0.707

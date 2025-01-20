@@ -12,8 +12,7 @@ int main()
     //These will update as the end effector follows the trajectory
     double angle1 = 45.0;
     double angle2 = 45.0;
-    
-   
+      
 
     std::cout << "STARTING: \n";
 
