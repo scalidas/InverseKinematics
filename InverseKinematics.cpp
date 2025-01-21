@@ -23,7 +23,7 @@ int main()
  
 void followTrajectory(Eigen::Vector3d initial_pos, double& angle1, double& angle2, Eigen::Vector3d (*position_function)(double)) {
     initial_pos = calculate_end_effector_position(angle1, angle2);
-    for (int t = 0; t < 1000; t+=10) {
+    for (int t = 0; t < 15; t+=3) {
         Eigen::Vector3d new_pos;
         new_pos = position_function(t);
 
@@ -46,7 +46,7 @@ void followTrajectory(Eigen::Vector3d initial_pos, double& angle1, double& angle
         std::cout << "Updated angles: " << angle1 << "  " << angle2 << "\n";
         std::cout << "Calculated position: \n" << test << "\n\n";
 
-        initial_pos = test;
+        initial_pos = new_pos;
     }
 }
 
@@ -133,8 +133,8 @@ Eigen::MatrixXd compute_jacobian_matrix(double theta1, double theta2) {
 Eigen::Vector3d position_func1(double t) {
 
     Eigen::Vector3d result_pos;
-    result_pos(0) = X_INIT + t / 1000;
-    result_pos(1) = Y_INIT + t / 1000;
+    result_pos(0) = X_INIT + t / 100;
+    result_pos(1) = Y_INIT + t / 100;
     result_pos(2) = 0;
 
     return result_pos;
