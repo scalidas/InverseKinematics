@@ -151,6 +151,7 @@ void calculate_joint_angles(Eigen::Vector3d pos_change, double& angle1, double& 
     Eigen::MatrixXd jacobian_inv = cod.pseudoInverse();
 
     Eigen::MatrixXd angle_change = jacobian_inv * pos_change;
+    //angle_change = -1 * angle_change;
 
     std::cout << "Position changes: \n" << pos_change << "\n";
     std::cout << "Jacobian: \n" << jacobian << "\n";
@@ -158,8 +159,8 @@ void calculate_joint_angles(Eigen::Vector3d pos_change, double& angle1, double& 
     //std::cout << "Angles: \n" << angle1 << "   " << angle2 << "\n";
     //std::cout << "Angle changes: " << angle_change(0, 0) << "  " << angle_change(1, 0) << "\n";
     ////Update angles
-    angle1 = angle1 + angle_change(0);
-    angle2 = angle2 + angle_change(1);
+    angle1 = angle1 - rad_to_deg(angle_change(0));
+    angle2 = angle2 + rad_to_deg(angle_change(1));
 
     std::cout << "Angle deltas: " << angle_change(0) << "  " << angle_change(1) << "\n";
     //std::cout << "Angles: " << angle1 << "  " << angle2 << "\n";
@@ -167,4 +168,8 @@ void calculate_joint_angles(Eigen::Vector3d pos_change, double& angle1, double& 
 
 double deg_to_rad(double deg) {
     return deg * PI / 180.0;
+}
+
+double rad_to_deg(double rad) {
+    return rad * (180.0 / PI);
 }

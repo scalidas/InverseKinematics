@@ -2,7 +2,7 @@
 
 #define InverseKinematics_h
 
-#define PI 3.14159
+#define PI 3.14159L
 
 //Lengths of the leg parts
 #define LEN1 1
@@ -24,5 +24,6 @@ void calculate_joint_angles(Eigen::Vector3d pos_change, double& angle1, double& 
 Eigen::Vector3d position_func1(double t);
 
 double deg_to_rad(double deg);
+double rad_to_deg(double rad);
 
 #endif
